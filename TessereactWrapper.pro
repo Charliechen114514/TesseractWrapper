@@ -12,6 +12,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    tesseractwrappercbridging.cpp \
     tesseractwrapperimpl.cpp \
     tessereactwrapper.cpp
 
@@ -33,7 +34,7 @@ unix {
 #INCLUDEPATH += $$PWD/include/
 #DEPENDPATH += $$PWD/include/
 
-# MSVC
+## MSVC
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/msvc/lib/ -ltesseract54 -lleptonica-1.84.1
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/msvc/lib/ -ltesseract54d -lleptonica-1.84.1d
 else:unix: LIBS += -L$$PWD/msvc/lib/ -ltesseract54 -lleptonica-1.84.1

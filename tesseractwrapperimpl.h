@@ -22,7 +22,7 @@ public:
     void                setImagePath(const char* imagePath){this->image_path = imagePath;}
     void                setTESS_PREFIX(const char* prefix){tess_prefix = prefix;}
     std::string         doGetText();
-
+    const char*         doGetHeapRawString();
     enum class _Inner_Error{
         _NO_ERROR_,
         _NO_LAN_SUPPORT,
@@ -35,11 +35,11 @@ private:
     bool                shellContinue(){return e == _Inner_Error::_NO_ERROR_;}
     void                clearImagePath(){image_path = nullptr;}
     void                clearLanguage(){language = nullptr;}
-    void                real_initAPI();
+    bool                real_initAPI();
     void                endAPICall();
-    const char*         language;
-    const char*         image_path;
-    const char*         tess_prefix {DEF_PATH} ;
+    std::string         language;
+    std::string         image_path;
+    std::string         tess_prefix {DEF_PATH} ;
     std::unique_ptr<tesseract::TessBaseAPI>     apiCall;
 };
 

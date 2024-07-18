@@ -28,6 +28,11 @@ TessereactWrapper::TessreactError::Error TessereactWrapper::error()
     return e.e;
 }
 
+const char* TessereactWrapper::errorString(){
+    transferError();
+    return e.errorString();
+}
+
 
 void TessereactWrapper::clearError()
 {
@@ -47,6 +52,15 @@ void TessereactWrapper::transferError()
         e.e = TessreactError::Error::PIC_PATH_NO_FOUND;
         break;
     }
+}
+
+const char* TessereactWrapper::getHeapRawString()
+{
+    transferError();
+    if(!isFine()){
+        return "";
+    }
+    return _impl->doGetHeapRawString();
 }
 
 std::string TessereactWrapper::getTextFromImage()
